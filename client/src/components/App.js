@@ -11,9 +11,9 @@ import StreamList from './streams/StreamList';
 const App = () => {
     return (
         <div className='ui container'>
-            <Header />
             <BrowserRouter>
                 <div>
+                    <Header />
                     <Route path='/' exact component={StreamList} />
                     <Route path='/streams/new' exact component={StreamCreate} />
                     <Route path='/streams/show' exact component={StreamShow} />
