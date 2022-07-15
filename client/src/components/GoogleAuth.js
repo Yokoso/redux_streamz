@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { signIn, signOut } from '../actions';
 
 import clientId from '../clientId';
 
@@ -15,14 +17,18 @@ class GoogleAuth extends React.Component {
                 plugin_name: 'Streamz'
             }).then(() => {
                 this.auth = window.gapi.auth2.getAuthInstance();
-                this.onAuthChange();
+                this.setState({ isSignedIn: this.auth.isSignedIn.get() });
                 this.auth.isSignedIn.listen(this.onAuthChange);
             });
         });
     };
 
-    onAuthChange = () => {
-        this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+    onAuthChange = isSignedIn => {
+        if (isSignedIn) {
+            this.props.signIn();
+        } else {
+            this.props.signOut();
+        }
     };
 
     onSignInClick = () => {
@@ -60,4 +66,8 @@ class GoogleAuth extends React.Component {
     }
 }
 
-export default GoogleAuth;
+export default connect(null, 
+    {
+        signIn,
+        signOut
+    })(GoogleAuth);
