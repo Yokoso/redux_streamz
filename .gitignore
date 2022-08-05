@@ -1,2 +1,3 @@
 .vscode/settings.json
 client/src/clientId.js
+api/db.json

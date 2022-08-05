@@ -4,6 +4,11 @@
       "title": "Test stream",
       "description": "Test description.",
       "id": 1
+    },
+    {
+      "title": "Nero test title",
+      "description": "Nero test description",
+      "id": 2
     }
   ]
 }
